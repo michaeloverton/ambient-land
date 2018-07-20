@@ -308,9 +308,9 @@
 
 				// ha long box
 				var box1 = new THREE.Mesh( boxGeometry, boxMaterial );
-				box1.position.x = -10; //Math.floor( Math.random() * 20 - 10 ) * 20;
+				box1.position.x = -60; //Math.floor( Math.random() * 20 - 10 ) * 20;
 				box1.position.y = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
-				box1.position.z = -10; Math.floor( Math.random() * 20 - 10 ) * 20;
+				box1.position.z = -60; Math.floor( Math.random() * 20 - 10 ) * 20;
 
 				var sound1 = new THREE.PositionalAudio( listener );
 				audioLoader.load( 'sound/ha-long.ogg', function( buffer ) {
@@ -326,9 +326,9 @@
 				// phasein box
 				var box2 = new THREE.Mesh( boxGeometry, boxMaterial );
 
-				box2.position.x = 10; //Math.floor( Math.random() * 20 - 10 ) * 20;
+				box2.position.x = 60; //Math.floor( Math.random() * 20 - 10 ) * 20;
 				box2.position.y = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
-				box2.position.z = 10; //Math.floor( Math.random() * 20 - 10 ) * 20;
+				box2.position.z = 60; //Math.floor( Math.random() * 20 - 10 ) * 20;
 
 				var sound2 = new THREE.PositionalAudio( listener );
 				audioLoader.load( 'sound/phhasein-2.ogg', function( buffer ) {
