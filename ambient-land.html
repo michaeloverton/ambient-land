@@ -169,8 +169,8 @@
 				camera.add( listener );
 
 				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0xffffff );
-				scene.fog = new THREE.Fog( 0xffffff, 0, 750 );
+				scene.background = new THREE.Color( 0xe6ffff );
+				scene.fog = new THREE.Fog( 0xe6ffff, 0, 250 );
 
 				var light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
 				light.position.set( 0.5, 1, 0.75 );
@@ -203,7 +203,7 @@
 							break;
 
 						case 32: // space
-							if ( canJump === true ) velocity.y += 350;
+							if ( canJump === true ) velocity.y += 100;
 							canJump = false;
 							break;
 
@@ -286,7 +286,7 @@
 
 				// objects
 
-				var boxGeometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
+				var boxGeometry = new THREE.BoxBufferGeometry( 20, 150, 10 );
 				boxGeometry = boxGeometry.toNonIndexed(); // ensure each face has unique vertices
 
 				position = boxGeometry.attributes.position;
@@ -342,24 +342,22 @@
 				objects.push( box2 );
 
 				// splinter box
-				/*
-				var box3 = new THREE.Mesh( boxGeometry, boxMaterial );
+				// var box3 = new THREE.Mesh( boxGeometry, boxMaterial );
 
-				box3.position.x = -60; //Math.floor( Math.random() * 20 - 10 ) * 20;
-				box3.position.y = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
-				box3.position.z = 60; //Math.floor( Math.random() * 20 - 10 ) * 20;
+				// box3.position.x = -300; //Math.floor( Math.random() * 20 - 10 ) * 20;
+				// box3.position.y = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
+				// box3.position.z = 60; //Math.floor( Math.random() * 20 - 10 ) * 20;
 
-				var sound3 = new THREE.PositionalAudio( listener );
-				audioLoader.load( 'sound/splinter.ogg', function( buffer ) {
-					sound3.setBuffer( buffer );
-					sound3.setRefDistance( 15 );
-					sound3.play();
-				});
-				box3.add( sound2 );
+				// var sound3 = new THREE.PositionalAudio( listener );
+				// audioLoader.load( 'sound/splinter.ogg', function( buffer ) {
+				// 	sound3.setBuffer( buffer );
+				// 	sound3.setRefDistance( 6 );
+				// 	sound3.play();
+				// });
+				// box3.add( sound2 );
 
-				scene.add( box3 );
-				objects.push( box3 );
-				*/
+				// scene.add( box3 );
+				// objects.push( box3 );
 
 				//
 
@@ -402,7 +400,7 @@
 					velocity.x -= velocity.x * 10.0 * delta;
 					velocity.z -= velocity.z * 10.0 * delta;
 
-					velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
+					velocity.y -= 0.5 * 100.0 * delta; //natural: 9.8 * 100.0 * delta; // 100.0 = mass
 
 					direction.z = Number( moveForward ) - Number( moveBackward );
 					direction.x = Number( moveLeft ) - Number( moveRight );
