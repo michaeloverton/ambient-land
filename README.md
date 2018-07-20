@@ -1,6 +1,6 @@
 # ambient_land
 
-wip. simple mod of http://localhost:8000/examples/misc_controls_pointerlock.html
+wip. simple mod of https://github.com/mrdoob/three.js/blob/master/examples/misc_controls_pointerlock.html
 
 two boxes make noise. walk and jump between them. be free and enjoy the lag and crackle.
 
