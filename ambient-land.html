@@ -306,14 +306,14 @@
 				var boxMaterial = new THREE.MeshPhongMaterial( { specular: 0xffffff, flatShading: true, vertexColors: THREE.VertexColors } );
 				boxMaterial.color.setHSL( Math.random() * 0.2 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
 
-				// ha long box
+				// rrothko box
 				var box1 = new THREE.Mesh( boxGeometry, boxMaterial );
 				box1.position.x = -60; //Math.floor( Math.random() * 20 - 10 ) * 20;
 				box1.position.y = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
 				box1.position.z = -60; Math.floor( Math.random() * 20 - 10 ) * 20;
 
 				var sound1 = new THREE.PositionalAudio( listener );
-				audioLoader.load( 'sound/ha-long.ogg', function( buffer ) {
+				audioLoader.load( 'sound/rrothko.ogg', function( buffer ) {
 					sound1.setBuffer( buffer );
 					sound1.setRefDistance( 7 );
 					sound1.play();
@@ -340,6 +340,26 @@
 
 				scene.add( box2 );
 				objects.push( box2 );
+
+				// splinter box
+				/*
+				var box3 = new THREE.Mesh( boxGeometry, boxMaterial );
+
+				box3.position.x = -60; //Math.floor( Math.random() * 20 - 10 ) * 20;
+				box3.position.y = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
+				box3.position.z = 60; //Math.floor( Math.random() * 20 - 10 ) * 20;
+
+				var sound3 = new THREE.PositionalAudio( listener );
+				audioLoader.load( 'sound/splinter.ogg', function( buffer ) {
+					sound3.setBuffer( buffer );
+					sound3.setRefDistance( 15 );
+					sound3.play();
+				});
+				box3.add( sound2 );
+
+				scene.add( box3 );
+				objects.push( box3 );
+				*/
 
 				//
 
