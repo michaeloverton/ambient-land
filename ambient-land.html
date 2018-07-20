@@ -168,6 +168,10 @@
 				var listener = new THREE.AudioListener();
 				camera.add( listener );
 
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
 				scene = new THREE.Scene();
 				scene.background = new THREE.Color( 0xe6ffff );
 				scene.fog = new THREE.Fog( 0xe6ffff, 0, 250 );
@@ -175,6 +179,21 @@
 				var light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
 				light.position.set( 0.5, 1, 0.75 );
 				scene.add( light );
+
+				//Create pointlights
+				var light = new THREE.PointLight( 0xffffff, 1, 200 );
+				light.position.set( 20, 10, 0 );
+				scene.add( light );
+
+				var light2 = new THREE.PointLight( 0xffffff, 1, 100 );
+				light2.position.set( -20, 30, 0 );
+				scene.add( light2 );
+
+				var light3 = new THREE.PointLight( 0xffffff, 1, 100 );
+				light3.position.set( 20, -30, 0 );
+				scene.add( light3 );
+
+				//
 
 				controls = new THREE.PointerLockControls( camera );
 				scene.add( controls.getObject() );
@@ -306,6 +325,7 @@
 				var boxMaterial = new THREE.MeshPhongMaterial( { specular: 0xffffff, flatShading: true, vertexColors: THREE.VertexColors } );
 				boxMaterial.color.setHSL( Math.random() * 0.2 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
 
+				// create function for creation of these
 				// rrothko box
 				var box1 = new THREE.Mesh( boxGeometry, boxMaterial );
 				box1.position.x = -60; //Math.floor( Math.random() * 20 - 10 ) * 20;
@@ -361,9 +381,7 @@
 
 				//
 
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
+				
 				document.body.appendChild( renderer.domElement );
 
 				//
