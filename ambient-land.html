@@ -193,8 +193,8 @@
 				light3.position.set( 20, -30, 0 );
 				scene.add( light3 );
 
-				var light3 = new THREE.PointLight( 0xffffff, 1, 20 );
-				light3.position.set( 0, 400, 0 );
+				var light3 = new THREE.PointLight( 0xffffff, 1, 50 );
+				light3.position.set( 0, 100, 0 );
 				scene.add( light3 );
 
 				//
@@ -329,66 +329,26 @@
 				var boxMaterial = new THREE.MeshPhongMaterial( { specular: 0xffffff, flatShading: true, vertexColors: THREE.VertexColors } );
 				boxMaterial.color.setHSL( Math.random() * 0.2 + 0.5, 0.75, Math.random() * 0.25 + 0.75 );
 
-				// create function for creation of these
 				// rrothko box
-				var box1 = new THREE.Mesh( boxGeometry, boxMaterial );
-				box1.position.x = -60; //Math.floor( Math.random() * 20 - 10 ) * 20;
-				box1.position.y = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
-				box1.position.z = -60; Math.floor( Math.random() * 20 - 10 ) * 20;
-
-				var sound1 = new THREE.PositionalAudio( listener );
-				audioLoader.load( 'sound/rrothko.ogg', function( buffer ) {
-					sound1.setBuffer( buffer );
-					sound1.setRefDistance( 7 );
-					sound1.play();
-				});
-				box1.add( sound1 );
-
+				var box1 = createBox(boxGeometry, boxMaterial, -60, 1, -60, audioLoader, listener, 7, 'sound/rrothko.ogg');
 				scene.add( box1 );
 				objects.push( box1 );
 
 				// phasein box
-				var box2 = new THREE.Mesh( boxGeometry, boxMaterial );
-
-				box2.position.x = 60; //Math.floor( Math.random() * 20 - 10 ) * 20;
-				box2.position.y = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
-				box2.position.z = 60; //Math.floor( Math.random() * 20 - 10 ) * 20;
-
-				var sound2 = new THREE.PositionalAudio( listener );
-				audioLoader.load( 'sound/phhasein-2.ogg', function( buffer ) {
-					sound2.setBuffer( buffer );
-					sound2.setRefDistance( 15 );
-					sound2.play();
-				});
-				box2.add( sound2 );
-
+				var box2 = createBox(boxGeometry, boxMaterial, 60, 1, 60, audioLoader, listener, 15, 'sound/phhasein-2.ogg');
 				scene.add( box2 );
 				objects.push( box2 );
 
-				// splinter box
-				// var box3 = new THREE.Mesh( boxGeometry, boxMaterial );
-
-				// box3.position.x = -300; //Math.floor( Math.random() * 20 - 10 ) * 20;
-				// box3.position.y = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
-				// box3.position.z = 60; //Math.floor( Math.random() * 20 - 10 ) * 20;
-
-				// var sound3 = new THREE.PositionalAudio( listener );
-				// audioLoader.load( 'sound/splinter.ogg', function( buffer ) {
-				// 	sound3.setBuffer( buffer );
-				// 	sound3.setRefDistance( 6 );
-				// 	sound3.play();
-				// });
-				// box3.add( sound2 );
-
-				// scene.add( box3 );
-				// objects.push( box3 );
-
 				// add random non-audio boxes
 				for(var i=0; i<60; i++) {
-					var box = new THREE.Mesh( boxGeometry, boxMaterial );
-					box.position.x = Math.floor( Math.random() * 20 - 10 ) * 20;
-					box.position.y = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
-					box.position.z = Math.floor( Math.random() * 20 - 10 ) * 20;
+					curX = Math.floor( Math.random() * 20 - 10 ) * 20;
+					curY = 1; //Math.floor( Math.random() * 20 ) * 20 + 10;
+					curZ = Math.floor( Math.random() * 20 - 10 ) * 20;
+					var box = createBox(boxGeometry, boxMaterial, curX, curY, curZ, audioLoader, listener);
+					// crazy rotations
+					box.rotateX(Math.random() * 2 * Math.PI);
+					box.rotateY(Math.random() * Math.PI);
+					//box.rotateZ(Math.random() * Math.PI);
 					scene.add( box );
 					objects.push( box );
 				}
@@ -401,6 +361,25 @@
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
+			}
+
+			function createBox(boxGeometry, boxMaterial, x, y, z, audioLoader, listener, refDistance, soundfile) {
+				var box = new THREE.Mesh( boxGeometry, boxMaterial );
+
+				box.position.x = x; //Math.floor( Math.random() * 20 - 10 ) * 20;
+				box.position.y = y; //Math.floor( Math.random() * 20 ) * 20 + 10;
+				box.position.z = z; //Math.floor( Math.random() * 20 - 10 ) * 20;
+
+				if(soundfile) {
+					var sound = new THREE.PositionalAudio( listener );
+					audioLoader.load( soundfile, function( buffer ) {
+						sound.setBuffer( buffer );
+						sound.setRefDistance( refDistance );
+						sound.play();
+					});
+					box.add( sound );
+				}
+				return box;
 			}
 
 			function onWindowResize() {
